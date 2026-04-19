@@ -85,7 +85,7 @@
     "@oslojs/encoding": "^1.1.0",
     "@simplewebauthn/browser": "^13.3.0",
     "@simplewebauthn/server": "^13.3.0",
-    "drizzle-orm": "1.0.0-beta.18-7eb39f0",
+    "drizzle-orm": "1.0.0-beta.20",
     "mailgun.js": "^12.7.1",
     "mode-watcher": "^1.1.0",
     "node-cron": "^4.2.1",
