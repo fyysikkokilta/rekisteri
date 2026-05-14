@@ -9,7 +9,7 @@
   const shaLinkUrl =
     versionSha === "development"
       ? "https://youtu.be/dQw4w9WgXcQ"
-      : `https://github.com/Tietokilta/rekisteri/tree/${versionSha}`;
+      : `https://github.com/fyysikkokilta/rekisteri/tree/${versionSha}`;
 </script>
 
 <footer class="mt-auto border-t border-border/40 bg-muted/50">
@@ -19,7 +19,7 @@
       <div class="flex flex-wrap items-center gap-x-4 gap-y-1">
         <span class="font-medium text-foreground">{$LL.documents.footer.organization()}</span>
         <span>{$LL.documents.footer.businessId()}</span>
-        <a href="mailto:hallitus@tietokilta.fi" class="underline underline-offset-2 hover:text-foreground"
+        <a href="mailto:raati@fyysikkokilta.fi" class="underline underline-offset-2 hover:text-foreground"
           >{$LL.documents.footer.email()}</a
         >
         <span class="hidden sm:inline">{$LL.documents.footer.address()}</span>
@@ -32,7 +32,7 @@
           {$LL.documents.footer.privacyPolicy()}
         </a>
         <span>
-          &copy; {new Date().getFullYear()} Tietokilta ry
+          &copy; {new Date().getFullYear()} Fyysikkokilta ry
           {#if showVersionSha}
             |
             <a

@@ -44,8 +44,8 @@
   // URL for guild bylaws based on locale
   const bylawsUrl = $derived(
     $locale === "fi"
-      ? "https://tietokilta.fi/fi/kilta/saannot#5-jasenet"
-      : "https://tietokilta.fi/en/guild/rules#5-members",
+      ? "https://fyysikkokilta.fi/fi/saannot#3-jasenet"
+      : "https://fyysikkokilta.fi/en/guild-constitution",
   );
 
   // Check if profile is complete
