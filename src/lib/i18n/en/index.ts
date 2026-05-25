@@ -154,7 +154,7 @@ const en = {
   // Emails
   emails: {
     otp: {
-      subject: "CSG Membership Registry Sign In Code",
+      subject: "Guild of Physics Membership Registry Sign In Code",
       body: `Your login code is: {code}
 
 This code will expire in 10 minutes.
@@ -170,13 +170,13 @@ Your payment has been received and your membership application is awaiting appro
 You will receive an email once your membership is approved.
 
 Best regards,
-Computer Science Guild`,
+Guild of Physics`,
     },
     membershipApproved: {
-      subject: "Welcome to the Computer Science Guild!",
+      subject: "Welcome to the Guild of Physics!",
       body: `Hi {firstName}!
 
-Your membership application has been approved. Welcome as a member of the Computer Science Guild!
+Your membership application has been approved. Welcome as a member of the Guild of Physics!
 
 Membership details:
 - Type: {membershipName}
@@ -187,7 +187,7 @@ You can now participate in guild activities and enjoy member benefits.
 See you at events!
 
 Best regards,
-Computer Science Guild`,
+Guild of Physics`,
     },
     membershipRenewed: {
       subject: "Your membership has been renewed!",
@@ -202,7 +202,7 @@ Membership details:
 Thank you for continuing as a member!
 
 Best regards,
-Computer Science Guild`,
+Guild of Physics`,
     },
   },
 
@@ -731,11 +731,11 @@ Computer Science Guild`,
     footer: {
       version: "Version",
       privacyPolicy: "Privacy Statement",
-      organization: "Tietokilta ry",
-      businessId: "Business ID: 1790346-8",
+      organization: "Fyysikkokilta ry",
+      businessId: "Business ID: 1903417-1",
       contact: "Contact",
-      email: "hallitus@tietokilta.fi",
-      address: "Konemiehentie 2, 02150 Espoo, Finland",
+      email: "raati@fyysikkokilta.fi",
+      address: "Otakaari 1, 02150 Espoo, Finland",
     },
   },
 } satisfies Translation;

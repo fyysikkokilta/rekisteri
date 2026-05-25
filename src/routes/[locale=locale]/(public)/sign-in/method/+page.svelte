@@ -40,7 +40,7 @@
       lastUsedMethod.current = "passkey";
 
       // Success! Redirect to home page
-      goto(route("/[locale=locale]", { locale: data.email.includes("tietokilta") ? "fi" : "en" }));
+      goto(route("/[locale=locale]", { locale: data.email.includes("fyysikkokilta") ? "fi" : "en" }));
     } catch (error) {
       console.error("Passkey authentication error:", error);
 

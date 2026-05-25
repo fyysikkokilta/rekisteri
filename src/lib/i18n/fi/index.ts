@@ -154,7 +154,7 @@ const fi = {
   // Emails
   emails: {
     otp: {
-      subject: "Tietokillan jäsenrekisterin sisäänkirjautumiskoodi",
+      subject: "Fyysikkokillan jäsenrekisterin sisäänkirjautumiskoodi",
       body: `Kirjautumiskoodisi on: {code}
 
 Koodi vanhenee 10 minuutin kuluttua.
@@ -170,13 +170,13 @@ Maksusi on vastaanotettu ja jäsenhakemuksesi odottaa hallituksen hyväksyntää
 Saat sähköpostiviestin, kun jäsenyytesi on hyväksytty.
 
 Terveisin,
-Tietokilta`,
+Fyysikkokilta`,
     },
     membershipApproved: {
-      subject: "Tervetuloa Tietokiltaan!",
+      subject: "Tervetuloa Fyysikkokiltaan!",
       body: `Hei {firstName}!
 
-Jäsenhakemuksesi on hyväksytty. Tervetuloa Tietokillan jäseneksi!
+Jäsenhakemuksesi on hyväksytty. Tervetuloa Fyysikkokillan jäseneksi!
 
 Jäsenyystiedot:
 - Jäsenyystyyppi: {membershipName}
@@ -187,7 +187,7 @@ Voit nyt osallistua killan toimintaan ja hyödyntää jäsenetuja.
 Nähdään tapahtumissa!
 
 Terveisin,
-Tietokilta`,
+Fyysikkokilta`,
     },
     membershipRenewed: {
       subject: "Jäsenyytesi on uusittu!",
@@ -202,7 +202,7 @@ Jäsenyystiedot:
 Kiitos, että jatkat jäsenenämme!
 
 Terveisin,
-Tietokilta`,
+Fyysikkokilta`,
     },
   },
 
@@ -735,11 +735,11 @@ Tietokilta`,
     footer: {
       version: "Versio",
       privacyPolicy: "Rekisteri- ja tietosuojaseloste",
-      organization: "Tietokilta ry",
-      businessId: "Y-tunnus: 1790346-8",
+      organization: "Fyysikkokilta ry",
+      businessId: "Y-tunnus: 1903417-1",
       contact: "Yhteystiedot",
-      email: "hallitus@tietokilta.fi",
-      address: "Konemiehentie 2, 02150 Espoo",
+      email: "raati@fyysikkokilta.fi",
+      address: "Otakaari 1, 02150 Espoo",
     },
   },
 } satisfies BaseTranslation;
