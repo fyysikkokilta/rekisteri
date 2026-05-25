@@ -735,7 +735,7 @@ Guild of Physics`,
       businessId: "Business ID: 1903417-1",
       contact: "Contact",
       email: "raati@fyysikkokilta.fi",
-      address: "PL 69, 02151 Espoo, Finland",
+      address: "Otakaari 1, 02150 Espoo, Finland",
     },
   },
 } satisfies Translation;
