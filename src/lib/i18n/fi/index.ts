@@ -739,7 +739,7 @@ Fyysikkokilta`,
       businessId: "Y-tunnus: 1903417-1",
       contact: "Yhteystiedot",
       email: "raati@fyysikkokilta.fi",
-      address: "PL 69, 02151 Espoo",
+      address: "Otakaari 1, 02150 Espoo",
     },
   },
 } satisfies BaseTranslation;
