@@ -7,7 +7,7 @@
   import { signOut } from "$lib/api/auth.remote";
   import { stripLocaleFromPathname, type Locale } from "$lib/i18n/routing";
   import { getMainNavItems, getSettingsNavItems, getAdminNavItems } from "$lib/navigation";
-  import RatasLogo from "$lib/icons/ratas-logo.svelte";
+  import FiiLogo from "$lib/icons/fii-logo.svelte";
   import { formatUserName } from "$lib/utils";
   import { hasAdminAccess, type AdminRole } from "$lib/shared/enums";
 
@@ -53,7 +53,7 @@
         <Sidebar.SidebarMenuButton size="lg" tooltipContent={$LL.app.title()}>
           {#snippet child({ props })}
             <a href={route("/[locale=locale]", { locale: $locale })} {...props}>
-              <RatasLogo class="size-8" />
+              <FiiLogo class="size-8" />
               <div class="flex flex-col gap-0.5 leading-none">
                 <span class="font-mono font-semibold">{$LL.app.title()}</span>
               </div>
