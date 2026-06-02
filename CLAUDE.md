@@ -12,7 +12,7 @@ pnpm install  # REQUIRED: Run this first - installs deps AND generates types
 
 ## Project Overview
 
-This is "rekisteri", a membership registry application for Tietokilta. It manages user memberships, payments via Stripe, and authentication via email OTP.
+This is "rekisteri", a membership registry application for Fyysikkokilta. It manages user memberships, payments via Stripe, and authentication via email OTP.
 
 **Tech Stack:**
 
@@ -60,7 +60,7 @@ pnpm preview        # Preview production build
 pnpm flake:build    # Build Docker image with Nix
 ```
 
-**Test account:** Login with `root@tietokilta.fi` to access admin view.
+**Test account:** Login with `root@fyysikkokilta.fi` to access admin view.
 
 ## Testing
 

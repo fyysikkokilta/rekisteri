@@ -45,7 +45,7 @@ export type PreferredLanguage = (typeof PREFERRED_LANGUAGE_VALUES)[number];
 /**
  * Available member status values.
  *
- * Aligned with Tietokilta bylaws (säännöt):
+ * Aligned with Fyysikkokilta bylaws (säännöt):
  * - awaiting_payment: User initiated purchase, payment not yet completed
  * - awaiting_approval: Payment received, awaiting board approval (§26)
  * - active: Board-approved active member
