@@ -1,6 +1,6 @@
 # rekisteri
 
-New project for a membership registry. [Live production deployment at rekisteri.tietokilta.fi](https://rekisteri.tietokilta.fi).
+New project for a membership registry. [Live production deployment at rekisteri.fyysikkokilta.fi](https://rekisteri.fyysikkokilta.fi).
 
 ## Developing
 
@@ -34,7 +34,7 @@ pnpm dev
 pnpm db:reset
 ```
 
-Login with `root@tietokilta.fi` to check the admin view, and any other account to check the regular user view.
+Login with `root@fyysikkokilta.fi` to check the admin view, and any other account to check the regular user view.
 
 **Note:** i18n types are auto-generated from `src/lib/i18n/{fi,en}/index.ts` and git-ignored. The dev server automatically watches for translation changes and regenerates types.
 

@@ -1,7 +1,7 @@
 import type { MemberStatus } from "$lib/shared/enums";
 
 /**
- * Valid member status transitions, aligned with Tietokilta bylaws.
+ * Valid member status transitions, aligned with Fyysikkokilta bylaws.
  *
  * Each key is a current status, and its value is the set of statuses
  * it can transition to.

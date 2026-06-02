@@ -20,7 +20,7 @@ export default defineConfig({
       // WebAuthn/Passkey configuration for test environment
       RP_ORIGIN: "http://localhost:4173",
       RP_ID: "localhost",
-      RP_NAME: "Tietokilta Rekisteri",
+      RP_NAME: "Fyysikkokilta Rekisteri",
     },
   },
 

@@ -39,14 +39,14 @@ async function globalSetup(_config: FullConfig) {
   console.log("✓ Pushing schema to test database...");
   execSync(`DATABASE_URL="${dbUrl}" pnpm drizzle-kit push --force`, { stdio: "inherit" });
 
-  let [adminUser] = await db.select().from(table.user).where(eq(table.user.email, "root@tietokilta.fi")).limit(1);
+  let [adminUser] = await db.select().from(table.user).where(eq(table.user.email, "root@fyysikkokilta.fi")).limit(1);
 
   if (!adminUser) {
     console.log("✓ Seeding test database...");
     execSync(`DATABASE_URL="${dbUrl}" pnpm tsx --env-file=.env src/lib/server/db/seed.ts`, {
       stdio: "inherit",
     });
-    [adminUser] = await db.select().from(table.user).where(eq(table.user.email, "root@tietokilta.fi")).limit(1);
+    [adminUser] = await db.select().from(table.user).where(eq(table.user.email, "root@fyysikkokilta.fi")).limit(1);
     if (!adminUser) {
       throw new Error("Failed to seed admin user");
     }
@@ -90,7 +90,7 @@ async function globalSetup(_config: FullConfig) {
   fs.writeFileSync("e2e/.auth/admin-user.json", JSON.stringify(userInfo, null, 2));
 
   // Create readonly admin user and session
-  const readonlyEmail = "readonly@tietokilta.fi";
+  const readonlyEmail = "readonly@fyysikkokilta.fi";
   // eslint-disable-next-line @typescript-eslint/no-deprecated
   let readonlyUser = await db._query.user.findFirst({
     where: eq(table.user.email, readonlyEmail),

@@ -70,9 +70,9 @@ try {
   const rootUserId = generateUserId();
   await db.insert(table.user).values({
     id: rootUserId,
-    email: "root@tietokilta.fi",
+    email: "root@fyysikkokilta.fi",
     firstNames: "Veijo",
-    lastName: "Tietokilta",
+    lastName: "Fyysikkokilta",
     homeMunicipality: "Espoo",
     preferredLanguage: "unspecified",
     isAllowedEmails: true,
