@@ -23,8 +23,6 @@ export const saveUserInfo = form(userInfoSchema, async (data) => {
         firstNames: data.firstNames,
         lastName: data.lastName,
         homeMunicipality: data.homeMunicipality,
-        preferredLanguage: data.preferredLanguage,
-        isAllowedEmails: data.isAllowedEmails,
       })
       .where(eq(table.user.id, event.locals.user.id));
   } catch {
