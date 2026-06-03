@@ -3,13 +3,11 @@
   import { Input } from "$lib/components/ui/input/index.js";
   import type { PageServerData } from "./$types";
   import { LL, locale } from "$lib/i18n/i18n-svelte";
-  import { Switch } from "$lib/components/ui/switch";
   import { saveUserInfo } from "../../data.remote";
   import { userInfoSchema } from "../../schema";
   import { Button } from "$lib/components/ui/button";
   import { Label } from "$lib/components/ui/label";
   import * as Card from "$lib/components/ui/card/index.js";
-  import * as NativeSelect from "$lib/components/ui/native-select";
   import { toast } from "svelte-sonner";
   import { route } from "$lib/ROUTES";
   import WrapTranslation from "$lib/components/wrap-translation.svelte";
@@ -24,8 +22,6 @@
         firstNames: data.user.firstNames ?? "",
         lastName: data.user.lastName ?? "",
         homeMunicipality: data.user.homeMunicipality ?? "",
-        preferredLanguage: data.user.preferredLanguage ?? "unspecified",
-        isAllowedEmails: data.user.isAllowedEmails,
       });
     });
   });
@@ -125,34 +121,6 @@
         {#each saveUserInfo.fields.homeMunicipality.issues() as issue, i (i)}
           <p class="text-sm text-destructive" data-testid="homeMunicipality-error">{issue.message}</p>
         {/each}
-      </div>
-
-      <div class="space-y-2">
-        <Label for="preferredLanguage">{$LL.user.preferredLanguage()}</Label>
-        <p class="text-sm text-muted-foreground">{$LL.user.preferredLanguageDescription()}</p>
-        <NativeSelect.Root
-          {...saveUserInfo.fields.preferredLanguage.as("select")}
-          id="preferredLanguage"
-          autocomplete="language"
-          class="w-full"
-        >
-          <NativeSelect.Option value="unspecified"
-            >{$LL.user.preferredLanguageOptions.unspecified()}</NativeSelect.Option
-          >
-          <NativeSelect.Option value="finnish">{$LL.user.preferredLanguageOptions.finnish()}</NativeSelect.Option>
-          <NativeSelect.Option value="english">{$LL.user.preferredLanguageOptions.english()}</NativeSelect.Option>
-        </NativeSelect.Root>
-        {#each saveUserInfo.fields.preferredLanguage.issues() as issue, i (i)}
-          <p class="text-sm text-destructive">{issue.message}</p>
-        {/each}
-      </div>
-
-      <div class="space-y flex flex-row items-center justify-between rounded-lg border p-4">
-        <div class="space-y-0.5">
-          <Label for="isAllowedEmails">{$LL.user.allowEmails()}</Label>
-          <p class="text-sm text-muted-foreground">{$LL.user.allowEmailsDescription()}</p>
-        </div>
-        <Switch {...saveUserInfo.fields.isAllowedEmails.as("checkbox")} id="isAllowedEmails" />
       </div>
 
       <Button type="submit" disabled={!!saveUserInfo.pending}>{$LL.common.save()}</Button>
