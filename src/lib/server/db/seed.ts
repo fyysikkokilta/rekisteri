@@ -30,19 +30,11 @@ try {
       },
     },
     {
-      id: "ulkojasen",
-      name: { fi: "Ulkojäsen", en: "External member" },
+      id: "ortogonaalijasen",
+      name: { fi: "Ortogonaalijäsen", en: "Orthogonal member" },
       description: {
-        fi: "Killan toiminnasta kiinnostuneille henkilöille, jotka ovat suorittaneet toisen asteen tutkinnon tai joilla on tutkintoon johtava opinto-oikeus toisessa korkeakoulussa.",
-        en: "For persons interested in the guild's activities who have completed an upper secondary qualification or have a right to study leading to a degree at another higher education institution.",
-      },
-    },
-    {
-      id: "alumnijasen",
-      name: { fi: "Alumnijäsen", en: "Alumni member" },
-      description: {
-        fi: "Henkilöille, joilla on aiemmin ollut tutkintoon johtava opiskeluoikeus korkeakoulussa.",
-        en: "For persons who previously had a right to study leading to a degree at a higher education institution.",
+        fi: "Killan toiminnasta kiinnostuneille henkilöille, jotka eivät täytä varsinaisen jäsenen edellytyksiä, kuten muiden alojen tai korkeakoulujen opiskelijoille ja killan toiminnassa muuten mukana oleville.",
+        en: "For persons interested in the guild's activities who do not meet the requirements for regular membership, such as students of other fields or institutions and others involved in the guild's activities.",
       },
     },
     {
@@ -52,15 +44,6 @@ try {
         fi: "Killan toimintaa tukeville henkilöille tai oikeushenkilöille.",
         en: "For persons or legal entities supporting the guild's activities.",
       },
-    },
-    {
-      id: "yhteisojasen",
-      name: { fi: "Yhdistysjäsen", en: "Association member" },
-      description: {
-        fi: "Rekisteröity yhdistys, jonka säännöt ja toimintatarkoitus ovat killan hengen mukaisia, eivätkä miltään osalta riko killan sääntöjä.",
-        en: "A registered association whose rules and purpose are in line with the spirit of the guild, and do not in any part violate the guild's rules.",
-      },
-      purchasable: false,
     },
   ];
 
@@ -79,6 +62,10 @@ try {
     adminRole: "admin",
   });
 
+  // Stable id for the current Kannatusjäsen membership, reused for the seeded
+  // association (organization) members below.
+  const kannatus2025MembershipId = crypto.randomUUID();
+
   const membershipsToSeed = [
     // 2022-2023 period (expired, legacy - no Stripe price)
     {
@@ -91,7 +78,7 @@ try {
     },
     {
       id: crypto.randomUUID(),
-      membershipTypeId: "ulkojasen",
+      membershipTypeId: "ortogonaalijasen",
       stripePriceId: null,
       startTime: new Date("2022-08-01"),
       endTime: new Date("2023-07-31"),
@@ -108,13 +95,13 @@ try {
     },
     {
       id: crypto.randomUUID(),
-      membershipTypeId: "ulkojasen",
+      membershipTypeId: "ortogonaalijasen",
       stripePriceId: null,
       startTime: new Date("2023-08-01"),
       endTime: new Date("2024-07-31"),
       requiresStudentVerification: false,
     },
-    // 2024-2025 period (with Stripe prices)
+    // 2024-2025 period (varsinainen & kannatus with Stripe prices)
     {
       id: crypto.randomUUID(),
       membershipTypeId: "varsinainen-jasen",
@@ -125,8 +112,8 @@ try {
     },
     {
       id: crypto.randomUUID(),
-      membershipTypeId: "ulkojasen",
-      stripePriceId: "price_1R8ORJ2a3B4f6jfheqBz7Pwj",
+      membershipTypeId: "ortogonaalijasen",
+      stripePriceId: null,
       startTime: new Date("2024-08-01"),
       endTime: new Date("2025-07-31"),
       requiresStudentVerification: false,
@@ -139,7 +126,7 @@ try {
       endTime: new Date("2025-07-31"),
       requiresStudentVerification: false,
     },
-    // 2025-2026 period (current, with Stripe prices)
+    // 2025-2026 period (current; varsinainen & kannatus with Stripe prices)
     {
       id: crypto.randomUUID(),
       membershipTypeId: "varsinainen-jasen",
@@ -150,14 +137,14 @@ try {
     },
     {
       id: crypto.randomUUID(),
-      membershipTypeId: "ulkojasen",
-      stripePriceId: "price_1Sqs7y2a3B4f6jfhHjnWzk9n",
+      membershipTypeId: "ortogonaalijasen",
+      stripePriceId: null,
       startTime: new Date("2025-08-01"),
       endTime: new Date("2026-07-31"),
       requiresStudentVerification: false,
     },
     {
-      id: crypto.randomUUID(),
+      id: kannatus2025MembershipId,
       membershipTypeId: "kannatusjasen",
       stripePriceId: "price_1Sqs8B2a3B4f6jfhB5Ga6AJC",
       startTime: new Date("2025-08-01"),
@@ -165,7 +152,6 @@ try {
       requiresStudentVerification: false,
     },
     // 2026-2027 period (upcoming, no Stripe prices yet, no members seeded)
-    // Note: Kannatusjäsen replaced by Alumnijäsen starting this period
     {
       id: crypto.randomUUID(),
       membershipTypeId: "varsinainen-jasen",
@@ -176,15 +162,7 @@ try {
     },
     {
       id: crypto.randomUUID(),
-      membershipTypeId: "ulkojasen",
-      stripePriceId: null,
-      startTime: new Date("2026-08-01"),
-      endTime: new Date("2027-07-31"),
-      requiresStudentVerification: false,
-    },
-    {
-      id: crypto.randomUUID(),
-      membershipTypeId: "alumnijasen",
+      membershipTypeId: "ortogonaalijasen",
       stripePriceId: null,
       startTime: new Date("2026-08-01"),
       endTime: new Date("2027-07-31"),
@@ -200,19 +178,18 @@ try {
   // Direct weights for each membership (must sum to 1.0 for memberships that should have members)
   const weights = [
     0.045, // 2022 varsinainen (5% of users * 90% varsinainen)
-    0.005, // 2022 ulkojäsen (5% of users * 10% ulkojäsen)
+    0.005, // 2022 ortogonaalijäsen (5% of users * 10% ortogonaalijäsen)
     0.135, // 2023 varsinainen (15% of users * 90% varsinainen)
-    0.015, // 2023 ulkojäsen (15% of users * 10% ulkojäsen)
+    0.015, // 2023 ortogonaalijäsen (15% of users * 10% ortogonaalijäsen)
     0.27, // 2024 varsinainen (30% of users * 90% varsinainen)
-    0.027, // 2024 ulkojäsen (30% of users * 9% ulkojäsen)
+    0.027, // 2024 ortogonaalijäsen (30% of users * 9% ortogonaalijäsen)
     0.003, // 2024 kannatusjäsen (30% of users * 1% kannatusjäsen)
     0.45, // 2025 varsinainen (50% of users * 90% varsinainen)
-    0.045, // 2025 ulkojäsen (50% of users * 9% ulkojäsen)
+    0.045, // 2025 ortogonaalijäsen (50% of users * 9% ortogonaalijäsen)
     0.005, // 2025 kannatusjäsen (50% of users * 1% kannatusjäsen)
     // 2026-2027 memberships - no members seeded (upcoming period)
     0, // 2026 varsinainen
-    0, // 2026 ulkojäsen
-    0, // 2026 alumnijäsen
+    0, // 2026 ortogonaalijäsen
   ];
 
   // Seed users only first
@@ -316,23 +293,15 @@ try {
 
   console.log(`Seeded ${membersToInsert.length} member records for ${allUsers.length - 1} users!`);
 
-  // Seed association (yhteisöjäsen) memberships and members
-  const associationMembershipId = crypto.randomUUID();
-  await db.insert(table.membership).values({
-    id: associationMembershipId,
-    membershipTypeId: "yhteisojasen",
-    stripePriceId: null,
-    startTime: new Date("2025-08-01"),
-    endTime: new Date("2026-07-31"),
-    requiresStudentVerification: false,
-  });
-
+  // Seed association (organization) members. Organizations join as Kannatusjäsen
+  // (supporting member), whose definition explicitly covers legal entities
+  // ("oikeushenkilöille"). Reuse the current 2025-2026 Kannatusjäsen membership.
   const associationMembers = [
     {
       id: crypto.randomUUID(),
       userId: null,
       organizationName: "Automaatio- ja systeemitekniikan kilta AS ry",
-      membershipId: associationMembershipId,
+      membershipId: kannatus2025MembershipId,
       status: "active" as const,
       stripeSessionId: null,
     },
@@ -340,7 +309,7 @@ try {
       id: crypto.randomUUID(),
       userId: null,
       organizationName: "Sähköinsinöörikilta ry",
-      membershipId: associationMembershipId,
+      membershipId: kannatus2025MembershipId,
       status: "active" as const,
       stripeSessionId: null,
     },

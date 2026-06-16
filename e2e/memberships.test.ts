@@ -9,7 +9,7 @@ test.describe("Memberships Admin", () => {
 
   // Use existing membership type IDs from seed data
   const membershipTypeId = "varsinainen-jasen";
-  const alternateMembershipTypeId = "ulkojasen";
+  const alternateMembershipTypeId = "ortogonaalijasen";
 
   test.afterEach(async ({ db }) => {
     // Clean up test memberships
@@ -86,7 +86,7 @@ test.describe("Memberships Admin", () => {
 
     await db.insert(table.membership).values({
       id: testMembershipId,
-      membershipTypeId: alternateMembershipTypeId, // Use ulkojasen to distinguish
+      membershipTypeId: alternateMembershipTypeId, // Use ortogonaalijasen to distinguish
       stripePriceId: null,
       startTime: new Date(2031, 7, 1),
       endTime: new Date(2032, 6, 31),
@@ -100,14 +100,14 @@ test.describe("Memberships Admin", () => {
 
     // Click our test membership (date display shows end year: 31.7.2032)
     await adminPage
-      .getByRole("button", { name: /Ulkojäsen.*2032/ })
+      .getByRole("button", { name: /Ortogonaalijäsen.*2032/ })
       .first()
       .click();
 
     // Wait for the sheet to open
     await expect(adminPage.getByRole("heading", { name: "Muokkaa jäsenyyttä" })).toBeVisible();
 
-    // Verify the type dropdown has ulkojasen selected
+    // Verify the type dropdown has ortogonaalijasen selected
     await expect(adminPage.getByLabel("Tyyppi")).toHaveValue(alternateMembershipTypeId);
   });
 
@@ -149,7 +149,7 @@ test.describe("Memberships Admin", () => {
     await expect(adminPage.getByRole("heading", { name: "Muokkaa jäsenyyttä" })).not.toBeVisible();
 
     // Verify the new type appears in the UI (date display shows end year: 31.7.2033)
-    await expect(adminPage.getByRole("button", { name: /Ulkojäsen.*2033/ }).first()).toBeVisible();
+    await expect(adminPage.getByRole("button", { name: /Ortogonaalijäsen.*2033/ }).first()).toBeVisible();
   });
 
   test("can toggle student verification requirement", async ({ adminPage, db }) => {
