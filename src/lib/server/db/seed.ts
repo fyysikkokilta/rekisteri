@@ -151,11 +151,11 @@ try {
       endTime: new Date("2026-07-31"),
       requiresStudentVerification: false,
     },
-    // 2026-2027 period (upcoming, no Stripe prices yet, no members seeded)
+    // 2026-2027 period (upcoming, with Stripe prices; no members seeded yet)
     {
       id: crypto.randomUUID(),
       membershipTypeId: "varsinainen-jasen",
-      stripePriceId: null,
+      stripePriceId: "price_1TiwsCHU0YjvA0o43QUugVie",
       startTime: new Date("2026-08-01"),
       endTime: new Date("2027-07-31"),
       requiresStudentVerification: true,
@@ -163,7 +163,15 @@ try {
     {
       id: crypto.randomUUID(),
       membershipTypeId: "ortogonaalijasen",
-      stripePriceId: null,
+      stripePriceId: "price_1Tiwu5HU0YjvA0o45qBM9rpz",
+      startTime: new Date("2026-08-01"),
+      endTime: new Date("2027-07-31"),
+      requiresStudentVerification: false,
+    },
+    {
+      id: crypto.randomUUID(),
+      membershipTypeId: "kannatusjasen",
+      stripePriceId: "price_1TixJAHU0YjvA0o4YTkeVX1Q",
       startTime: new Date("2026-08-01"),
       endTime: new Date("2027-07-31"),
       requiresStudentVerification: false,
@@ -190,6 +198,7 @@ try {
     // 2026-2027 memberships - no members seeded (upcoming period)
     0, // 2026 varsinainen
     0, // 2026 ortogonaalijäsen
+    0, // 2026 kannatusjäsen
   ];
 
   // Seed users only first
