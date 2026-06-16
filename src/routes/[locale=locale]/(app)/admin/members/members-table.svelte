@@ -221,7 +221,6 @@
   // Copy to clipboard state
   let copySuccess = $state(false);
   let exportJasenetSuccess = $state(false);
-  let exportAktiivitSuccess = $state(false);
 
   // Helper to strip email aliases (e.g., example+alias@domain.com -> example@domain.com)
   function stripEmailAlias(email: string): string {
@@ -278,13 +277,8 @@
   }
 
   // Helper to export filtered members as CSV (Google Groups format)
-  function exportMembersAsCSV(groupEmail: "jasenet@tietokilta.fi" | "aktiivit@tietokilta.fi") {
-    let filteredRows = table.getFilteredRowModel().rows;
-
-    // For aktiivit@, only include members who have opted in for emails
-    if (groupEmail === "aktiivit@tietokilta.fi") {
-      filteredRows = filteredRows.filter((row) => row.original.isAllowedEmails === true);
-    }
+  function exportMembersAsCSV(groupEmail: "jasenet@tietokilta.fi") {
+    const filteredRows = table.getFilteredRowModel().rows;
 
     // Google Groups CSV format: Group Email [Required],Member Email,Member Type,Member Role
     const csvRows = ["Group Email [Required],Member Email,Member Type,Member Role"];
@@ -319,17 +313,10 @@
     link.remove();
 
     // Show success message
-    if (groupEmail === "jasenet@tietokilta.fi") {
-      exportJasenetSuccess = true;
-      setTimeout(() => {
-        exportJasenetSuccess = false;
-      }, 2000);
-    } else {
-      exportAktiivitSuccess = true;
-      setTimeout(() => {
-        exportAktiivitSuccess = false;
-      }, 2000);
-    }
+    exportJasenetSuccess = true;
+    setTimeout(() => {
+      exportJasenetSuccess = false;
+    }, 2000);
   }
 
   // Helper to filter memberships based on current filters
@@ -745,15 +732,6 @@
         {:else}
           <Download class="mr-2 size-4" />
           {$LL.admin.members.table.exportJasenet()}
-        {/if}
-      </Button>
-      <Button variant="outline" size="default" onclick={() => exportMembersAsCSV("aktiivit@tietokilta.fi")}>
-        {#if exportAktiivitSuccess}
-          <Check class="mr-2 size-4" />
-          {$LL.admin.members.table.exported()}
-        {:else}
-          <Download class="mr-2 size-4" />
-          {$LL.admin.members.table.exportAktiivit()}
         {/if}
       </Button>
     </div>
