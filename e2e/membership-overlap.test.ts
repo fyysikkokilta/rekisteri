@@ -3,7 +3,7 @@ import * as table from "$lib/server/db/schema";
 import { route } from "../src/lib/ROUTES";
 
 // Use existing membership type from seed data
-const membershipTypeId = "ulkojasen"; // External member - no student verification required
+const membershipTypeId = "ortogonaalijasen"; // Orthogonal member - no student verification required
 
 // Real Stripe test price ID from seed data - this is required because the page
 // fetches price metadata from Stripe API, and fake price IDs will fail

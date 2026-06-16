@@ -155,7 +155,7 @@ Test,User,Helsinki,test@example.com,nonexistent-type,2025-08-01`;
 
     // Verify membership type IDs are listed in the instructions
     await expect(adminPage.getByText("varsinainen-jasen")).toBeVisible();
-    await expect(adminPage.getByText("ulkojasen")).toBeVisible();
+    await expect(adminPage.getByText("ortogonaalijasen")).toBeVisible();
   });
 
   test("should attach membership to existing user when CSV email is a verified secondary email", async ({
@@ -463,7 +463,7 @@ Test,User,Helsinki,${email},varsinainen-jasen,2019-08-01`;
       // Use years that definitely don't exist in seed data and won't conflict
       const csvContent = `firstNames,lastName,homeMunicipality,email,membershipTypeId,membershipStartDate
 Alice,Smith,Helsinki,${email1},varsinainen-jasen,1998-08-01
-Bob,Jones,Tampere,${email2},ulkojasen,1998-08-01
+Bob,Jones,Tampere,${email2},ortogonaalijasen,1998-08-01
 Charlie,Brown,Espoo,${email3},varsinainen-jasen,1997-08-01`;
       fs.writeFileSync(tempPath, csvContent);
 
@@ -489,7 +489,7 @@ Charlie,Brown,Espoo,${email3},varsinainen-jasen,1997-08-01`;
       await expect(adminPage.getByText("Luotu!").first()).toBeVisible({ timeout: 15_000 });
 
       // Should have multiple "Luotu!" badges (at least 2, since 2 unique type+date combos)
-      // varsinainen-jasen 2018, ulkojasen 2018, varsinainen-jasen 2017 = 3 unique
+      // varsinainen-jasen 1998, ortogonaalijasen 1998, varsinainen-jasen 1997 = 3 unique
       const createdBadges = adminPage.getByText("Luotu!");
       await expect(createdBadges).toHaveCount(3);
 
@@ -587,9 +587,9 @@ Test,User,Helsinki,${email},varsinainen-jasen,2016-08-01`;
       ];
 
       // Create a dynamic CSV with memberships spanning 2018-2026:
-      // - Memberships that exist (2022-2025 varsinainen/ulkojasen)
-      // - Memberships that DON'T exist (2018-2021 varsinainen, 2019-2021 ulkojasen)
-      // - alumnijasen for 2023-2025 (only 2026 exists in seed)
+      // - Memberships that exist (2022-2025 varsinainen/ortogonaalijasen)
+      // - Memberships that DON'T exist (2018-2021 varsinainen, 2019-2021 ortogonaalijasen)
+      // - ortogonaalijasen for 2023-2025 (exist in seed)
       // - kannatusjasen for 2021-2023 (only 2024-2025 exists in seed)
       const csvContent = `firstNames,lastName,homeMunicipality,email,membershipTypeId,membershipStartDate
 Testi,Henkilö,Helsinki,${testEmails[0]},varsinainen-jasen,2020-08-01
@@ -597,14 +597,14 @@ Testi,Henkilö,Helsinki,${testEmails[0]},varsinainen-jasen,2021-08-01
 Testi,Henkilö,Helsinki,${testEmails[0]},varsinainen-jasen,2023-08-01
 Testi,Henkilö,Helsinki,${testEmails[0]},varsinainen-jasen,2024-08-01
 Testi,Henkilö,Helsinki,${testEmails[0]},varsinainen-jasen,2025-08-01
-Vanha,Jäsen,Espoo,${testEmails[1]},ulkojasen,2019-08-01
-Vanha,Jäsen,Espoo,${testEmails[1]},ulkojasen,2020-08-01
-Vanha,Jäsen,Espoo,${testEmails[1]},ulkojasen,2021-08-01
+Vanha,Jäsen,Espoo,${testEmails[1]},ortogonaalijasen,2019-08-01
+Vanha,Jäsen,Espoo,${testEmails[1]},ortogonaalijasen,2020-08-01
+Vanha,Jäsen,Espoo,${testEmails[1]},ortogonaalijasen,2021-08-01
 Vanha,Jäsen,Espoo,${testEmails[1]},varsinainen-jasen,2022-08-01
 Vanha,Jäsen,Espoo,${testEmails[1]},varsinainen-jasen,2023-08-01
-Alumni,Testaaja,Tampere,${testEmails[2]},alumnijasen,2023-08-01
-Alumni,Testaaja,Tampere,${testEmails[2]},alumnijasen,2024-08-01
-Alumni,Testaaja,Tampere,${testEmails[2]},alumnijasen,2025-08-01
+Alumni,Testaaja,Tampere,${testEmails[2]},ortogonaalijasen,2023-08-01
+Alumni,Testaaja,Tampere,${testEmails[2]},ortogonaalijasen,2024-08-01
+Alumni,Testaaja,Tampere,${testEmails[2]},ortogonaalijasen,2025-08-01
 Kannattaja,Tuki,Turku,${testEmails[3]},kannatusjasen,2021-08-01
 Kannattaja,Tuki,Turku,${testEmails[3]},kannatusjasen,2022-08-01
 Kannattaja,Tuki,Turku,${testEmails[3]},kannatusjasen,2023-08-01
