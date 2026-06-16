@@ -2,7 +2,7 @@
   import { LL, locale } from "$lib/i18n/i18n-svelte";
   import { stripLocaleFromPathname, type Locale } from "$lib/i18n/routing";
   import { page } from "$app/state";
-  import RatasLogo from "$lib/icons/ratas-logo.svelte";
+  import FiiLogo from "$lib/icons/fii-logo.svelte";
   import * as ToggleGroup from "$lib/components/ui/toggle-group/index.js";
   import { route } from "$lib/ROUTES";
   import Footer from "$lib/components/footer.svelte";
@@ -22,7 +22,7 @@
     <div class="mx-auto w-full max-w-[1400px]">
       <div class="container mx-auto flex h-14 items-center justify-between gap-2 px-4 md:gap-4">
         <a href={route("/[locale=locale]", { locale: $locale })} class="flex items-center gap-2">
-          <RatasLogo class="h-12 w-12" />
+          <FiiLogo class="h-12 w-12" />
           <span class="sr-only font-mono font-medium sm:not-sr-only sm:text-xl">{$LL.app.title()}</span>
         </a>
         <ToggleGroup.Root type="single" value={$locale} data-sveltekit-reload>
